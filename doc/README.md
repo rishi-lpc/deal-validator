@@ -260,3 +260,4 @@ This separation allows you to:
 - Unit test the core logic easily
 - Deploy the same code to different platforms (AWS Lambda, Google Cloud Functions, etc.)
 - Maintain regression tests that validate against expected outcomes
+# Deployment Test
