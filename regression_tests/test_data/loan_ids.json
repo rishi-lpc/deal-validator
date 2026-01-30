@@ -1,0 +1,74 @@
+{
+  "test_loans": [
+    {
+      "id": "a0iVy00000ETkIkIAL",
+      "name": "Canyon Valley - Mezz",
+      "type": "Mezzanine",
+      "payment": "Interest Only",
+      "expected_status": "Clean (0 errors, 1 warning)"
+    },
+    {
+      "id": "a0iVy00000Gb9RJIAZ",
+      "name": "Canyon Valley - Senior",
+      "type": "Senior",
+      "payment": "Principal & Interest",
+      "expected_status": "Clean (0 errors, 2 warnings)"
+    },
+    {
+      "id": "a0ial00000364X3AAI",
+      "name": "Vantage 6 Portfolio - Mezz",
+      "type": "Mezzanine",
+      "payment": "Interest Only",
+      "expected_status": "Has errors (2 errors, 1 warning)"
+    },
+    {
+      "id": "a0ial00000362BuAAI",
+      "name": "Vantage 6 Portfolio - Senior",
+      "type": "Senior",
+      "payment": "Principal & Interest",
+      "expected_status": "Has errors (1 error, 2 warnings)"
+    },
+    {
+      "id": "a0ial000003EBTKAA4",
+      "name": "Vitalia Stow - Preferred Equity",
+      "type": "Preferred",
+      "payment": "Interest Only",
+      "expected_status": "Clean (0 errors, 1 warning)"
+    },
+    {
+      "id": "a0iVy00000FFualIAD",
+      "name": "Vicinia Gardens - A-Tranche",
+      "type": "A-Tranche",
+      "payment": "Interest Only",
+      "expected_status": "Clean (0 errors, 2 warnings)"
+    },
+    {
+      "id": "a0iVy00000FFuakIAD",
+      "name": "Vicinia Gardens - B-Tranche",
+      "type": "B-Tranche",
+      "payment": "Mixed (IO + P&I)",
+      "expected_status": "Has errors (1 error, 1 warning)"
+    },
+    {
+      "id": "a0iVy00000HnhObIAJ",
+      "name": "Vibrance At Park Hill - Preferred",
+      "type": "Preferred",
+      "payment": "None (minimal data)",
+      "expected_status": "Many errors (9 errors, 2 warnings)"
+    },
+    {
+      "id": "a0iVy00000Hnh8TIAR",
+      "name": "Vibrance At Park Hill - Senior",
+      "type": "Senior",
+      "payment": "None (minimal data)",
+      "expected_status": "Many errors (9 errors, 2 warnings)"
+    },
+    {
+      "id": "a0iVy000003nN0AIAU",
+      "name": "Canyon View - Mezz A",
+      "type": "Mezzanine",
+      "payment": "None (fees only)",
+      "expected_status": "Has errors (4 errors, 1 warning)"
+    }
+  ]
+}

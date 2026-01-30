@@ -1,0 +1,244 @@
+{
+  "validation_rules": [
+    {
+      "entity": "LOAN_INFO",
+      "test_type": "required_fields",
+      "fields": [
+        "ID",
+        "NAME",
+        "LLC_BI__AMOUNT__C",
+        "LLC_BI__CLOSEDATE__C",
+        "LLC_BI__MATURITY_DATE__C",
+        "LLC_BI__FIRST_PAYMENT_DATE__C",
+        "LLC_BI__FUNDING_AT_CLOSE__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "LOAN_INFO",
+      "test_type": "date_format",
+      "fields": [
+        "LLC_BI__CLOSEDATE__C",
+        "LLC_BI__MATURITY_DATE__C",
+        "LLC_BI__FIRST_PAYMENT_DATE__C"
+      ],
+      "format": "%Y-%m-%d",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "LOAN_INFO",
+      "test_type": "amount_format",
+      "fields": [
+        "LLC_BI__AMOUNT__C",
+        "LLC_BI__FUNDING_AT_CLOSE__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "LOAN_INFO",
+      "test_type": "date_relationship",
+      "field1": "LLC_BI__CLOSEDATE__C",
+      "field2": "LLC_BI__MATURITY_DATE__C",
+      "operator": "less_than",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "LOAN_INFO",
+      "test_type": "array_exists",
+      "arrays": [
+        "PRICING_DETAILS",
+        "PAYMENT_DETAILS"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "LOAN_INFO",
+      "test_type": "array_exists",
+      "arrays": [
+        "FEE_DETAILS",
+        "DRAW_DETAILS"
+      ],
+      "severity": "warning",
+      "enabled": true
+    },
+    {
+      "entity": "PRICING",
+      "test_type": "required_fields",
+      "fields": [
+        "CM_PARTIAL_PERIOD_INTERST_ACCRUAL_METHOD__C",
+        "CM_INTEREST_ACCRUAL_METHOD__C",
+        "LLC_BI__EFFECTIVE_DATE__C_Y",
+        "LLC_BI__TERM_LENGTH__C_Y",
+        "LLC_BI__TERM_UNIT__C_Y",
+        "LLC_BI__INTEREST_RATE_TYPE__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "PRICING",
+      "test_type": "date_format",
+      "fields": [
+        "LLC_BI__EFFECTIVE_DATE__C_Y"
+      ],
+      "format": "%Y-%m-%d",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "PRICING",
+      "test_type": "conditional_required",
+      "condition_field": "LLC_BI__INTEREST_RATE_TYPE__C",
+      "condition_value": "Fixed",
+      "required_fields": [
+        "LLC_BI__ALL_IN_RATE__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "PRICING",
+      "test_type": "conditional_required",
+      "condition_field": "LLC_BI__INTEREST_RATE_TYPE__C",
+      "condition_value_not": "Fixed",
+      "required_fields": [
+        "LLC_BI__INDEX__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "PRICING",
+      "test_type": "conditional_warning",
+      "condition_field": "LLC_BI__INTEREST_RATE_TYPE__C",
+      "condition_value_not": "Fixed",
+      "check_fields": [
+        "LLC_BI__RATE_FLOOR__C",
+        "LLC_BI__RATE_CEILING__C",
+        "LLC_BI__SPREAD__C"
+      ],
+      "severity": "warning",
+      "enabled": true
+    },
+    {
+      "entity": "PAYMENT",
+      "test_type": "required_fields",
+      "fields": [
+        "LLC_BI__PAYMENT_TYPE__C",
+        "LLC_BI__EFFECTIVE_DATE__C_Y",
+        "LLC_BI__TERM_LENGTH__C_Y",
+        "LLC_BI__TERM_UNIT__C_Y",
+        "LLC_BI__FREQUENCY__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "PAYMENT",
+      "test_type": "date_format",
+      "fields": [
+        "LLC_BI__EFFECTIVE_DATE__C_Y"
+      ],
+      "format": "%Y-%m-%d",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "PAYMENT",
+      "test_type": "conditional_required",
+      "condition_field": "LLC_BI__TYPE__C",
+      "condition_contains": "principal",
+      "required_fields": [
+        "CM_AMORTIZED_TERM_MONTHS__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "DRAW",
+      "test_type": "required_fields",
+      "fields": [
+        "LLC_BI__AMOUNT__C",
+        "CM_FEE_DATE__C",
+        "CM_END_DATE__C",
+        "LLC_BI__FEE_TYPE__C"
+      ],
+      "severity": "error",
+      "enabled": true,
+      "exclude_when": {
+        "field": "LLC_BI__PAID_AT_CLOSING__C",
+        "value": "Funded at Closing"
+      }
+    },
+    {
+      "entity": "DRAW",
+      "test_type": "date_format",
+      "fields": [
+        "CM_FEE_DATE__C",
+        "CM_END_DATE__C"
+      ],
+      "format": "%Y-%m-%d",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "DRAW",
+      "test_type": "amount_format",
+      "fields": [
+        "LLC_BI__AMOUNT__C"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "DRAW",
+      "test_type": "date_relationship",
+      "field1": "CM_END_DATE__C",
+      "field2": "CM_FEE_DATE__C",
+      "operator": "greater_than_or_equal",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "DRAW",
+      "test_type": "sum_validation",
+      "sum_field": "LLC_BI__AMOUNT__C",
+      "equals_field": "LLC_BI__AMOUNT__C",
+      "equals_entity": "LOAN_INFO",
+      "tolerance": 0.01,
+      "exclude_when": {
+        "field": "LLC_BI__FEE_TYPE__C",
+        "value": "Funded At Closing"
+      },
+      "severity": "warning",
+      "enabled": true
+    },
+    {
+      "entity": "CROSS_ENTITY",
+      "test_type": "date_match",
+      "source_entity": "LOAN_INFO",
+      "source_field": "LLC_BI__CLOSEDATE__C",
+      "target_entity": "PRICING",
+      "target_field": "LLC_BI__EFFECTIVE_DATE__C_Y",
+      "match_requirement": "at_least_one",
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "entity": "CROSS_ENTITY",
+      "test_type": "date_match",
+      "source_entity": "LOAN_INFO",
+      "source_field": "LLC_BI__FIRST_PAYMENT_DATE__C",
+      "target_entity": "PAYMENT",
+      "target_field": "LLC_BI__EFFECTIVE_DATE__C_Y",
+      "match_requirement": "at_least_one",
+      "severity": "error",
+      "enabled": true
+    }
+  ]
+}

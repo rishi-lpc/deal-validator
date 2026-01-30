@@ -1,0 +1,19 @@
+# Azure Functions Ignore File
+.git*
+.vscode
+.DS_Store
+local.settings.json
+__pycache__
+*.pyc
+.python_packages
+.venv
+venv
+env
+
+# Exclude from deployment
+archive/
+regression_tests/
+test_*.py
+run_regression_tests.py
+*.md
+.gitignore
